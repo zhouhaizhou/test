@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        /*因为浏览器本身都有自己的解释方式因此为了能够让其解除因为浏览器本身的缘故，因此需要加上这两句话，是有很大的区别*/
+        body{
+            margin: 0px;
+            padding: 0px;
+        }
+        #div1 {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            background: #cccccc;
+        }
+        
+        #div2 {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 200px;
+            height: 200px;
+            background: red;
+            /*filter: alpha(opacity=50);*/
+            /*在IE中需要通过”filter”来定义透明度”opacity”，而在Mozilla中是可以直接解析”opacity”,
+            所以如果要使得这个效果在两种浏览器中都得到支持，需要把两种设定都加进去。
+            针对IE的设定：this.filters.alpha.opacity=50
+            这个滤镜是IE专用的，建设不要用，如果想做透明可以用JS来解决
+            */
+        }
+    </style>
+</head>
+<body>
+    <div id="div1">
+        这里是div1的内容
+        <div id="div2">
+            div2
+        </div>
+    </div>
+
+
+</body>
+</html>

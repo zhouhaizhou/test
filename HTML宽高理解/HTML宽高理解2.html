@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script src="../jquery-1.9.1.js"></script>
+</head>
+<body style="margin: 0px ;border: 1px solid darkred" >
+        <div id="content_id"  style="width: 1500px; height: 1000px;background-color: #00b7cf">
+         
+         
+            <div  style="display:  inline-block;">
+                <table>
+                    <tr>
+                        <td></td>
+                        <td><input type="button" onclick="return changesize('h',-100);" value="-100"></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><input type="button" onclick="changesize('w',-100);" value="-100"></td>
+                        <td></td>
+                        <td><input type="button" onclick="changesize('w',100);" value="+100"></td>
+         
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input type="button" onclick="changesize('h',100);" value="+100"></td>
+                        <td></td>
+         
+                    </tr>
+                </table>
+            </div>
+         
+         
+            <div style=" margin: 5px">
+                蓝色div的大小：width：<span id="divWidth"></span>   height：<span id="divHeight"></span><br>
+                网页可见区域宽(body的宽度)：document.body.clientWidth=<span id="clientWidth"></span><br>
+                网页可见区域高(body的高度)：document.body.clientHeight=<span id="clientHeight"></span><br>
+                网页可见区域宽(body的宽度+边线的宽)：document.body.offsetWidth=<span id="offsetWidth"></span><br>
+                网页可见区域高(body的高度+边线的宽)：document.body.offsetHeight=<span id="offsetHeight"></span><br>
+                网页正文全文宽(是内容的宽度，不是body的宽度)：document.body.scrollWidth=<span id="scrollWidth"></span><br>
+                网页正文全文高(是内容的高度，不是body的高度)：document.body.scrollHeight= <span id="scrollHeight"></span><br>
+                网页被卷去的高(左边滚动条移动导致上面被隐藏的高度，火狐有兼容性问题)：document.body.scrollTop=<span id="scrollTop"></span><br>
+                网页被卷去的左(底部滚动条移动导致左侧被隐藏的宽度，火狐有兼容性问题)：document.body.scrollLeft=<span id="scrollLeft"></span><br>
+                浏览器高度:window.outerHeight = <span id="outerHeight"></span><br>
+                浏览器宽度:window.outerWidth = <span id="outerWidth"></span><br>
+                浏览器内页面可用高度(包含了水平滚动条的高度(若存在))window.innerHeight= <span id="innerHeight"></span><br>
+                浏览器内页面可用宽度(包含了垂直滚动条的宽度(若存在))window.innerWidth= <span id="innerWidth"></span><br>
+                网页正文部分上(屏幕的左上角和浏览器左上角的垂直距离，火狐有兼容性问题)：window.screenTop=<span id="screenTop"></span><br>
+                网页正文部分左(屏幕的左上角和浏览器左上角的水平距离，火狐有兼容性问题)：window.screenLeft=<span id="screenLeft"></span><br>
+                屏幕分辨率的高(和浏览器无关)：window.screen.height=<span id="screenheight"></span><br>
+                屏幕分辨率的宽(和浏览器无关)：window.screen.width=<span id="screenwidth"></span><br>
+                屏幕可用工作区高度=屏幕分辨率的高 - 上或下任务栏的高度(谷歌有兼容问题)：window.screen.availHeight=<span id="availHeight"></span><br>
+                屏幕可用工作区宽度=屏幕分辨率的高 - 左或右任务栏的高度(谷歌有兼容问题)：window.screen.availWidth=<span id="availWidth"></span><br>
+            </div>
+        </div>
+        <script type="text/javascript">
+            setInterval("myInterval()", 500);//1000为1秒钟
+            function myInterval() {
+         
+                $("#divWidth").html($("#content_id").width());
+                $("#divHeight").html($("#content_id").height());
+                $("#clientWidth").html(document.body.clientWidth);
+                $("#clientHeight").html(document.body.clientHeight);
+                $("#offsetWidth").html(document.body.offsetWidth);
+                $("#offsetHeight").html(document.body.offsetHeight);
+                $("#scrollWidth").html(document.body.scrollWidth);
+                $("#scrollHeight").html(document.body.scrollHeight);
+                $("#scrollTop").html(document.body.scrollTop);
+                $("#scrollLeft").html(document.body.scrollLeft);
+                $("#outerHeight").html(window.outerHeight);
+                $("#outerWidth").html(window.outerWidth);
+                $("#innerHeight").html(window.innerHeight);
+                $("#innerWidth").html(window.innerWidth);
+                $("#screenTop").html(window.screenTop);
+                $("#screenLeft").html(window.screenLeft);
+                $("#screenheight").html(window.screen.height);
+                $("#screenwidth").html(window.screen.width);
+                $("#availHeight").html(window.screen.availHeight);
+                $("#availWidth").html(window.screen.availWidth);
+         
+            }
+         
+            function changesize(a,b){
+                if (a=='w'){
+                    $("#content_id").css('width',$("#content_id").width()+b);
+                }else {
+                    $("#content_id").css('height',$("#content_id").height()+b);
+                }
+         
+            }
+        </script>
+         
+        </body>
+        
+</html>

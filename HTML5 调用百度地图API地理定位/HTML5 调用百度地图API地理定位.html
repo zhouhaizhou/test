@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>HTML5调用百度地图API进行地理定位实例</title>
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=134db1b9cf1f1f2b4427210932b34dcb"></script>
+    </head>
+
+<body style="margin:50px 10px;">
+    <div id="status" style="text-align: center"></div>
+    <div style="width:600px;height:480px;border:1px solid gray;margin:30px auto" id="container"></div>
+</body>
+
+</html>
+
+<script type="text/javascript">
+    //默认地理位置设置为上海市浦东新区
+    var x = 121.443406,
+        y = 31.196059;
+    window.onload = function () {
+        if (navigator.geolocation) {
+            // navigator.geolocation.getCurrentPosition(showPosition);
+            document.getElementById("status").innerHTML = "HTML5 Geolocation is supported in your browser.";
+            // 百度地图API功能  
+            var map = new BMap.Map("container"); // 创建地图实例  
+            var point = new BMap.Point(x, y); // 创建点坐标
+            map.centerAndZoom(point, 19);
+
+            map.enableScrollWheelZoom(); //开启滚轮缩放功能
+            map.disableDoubleClickZoom(); //关闭双击放大功能
+
+            map.enableKeyboard(); //开启键盘操作功能
+
+            // //自定义一个marker
+            // var myIcon = new BMap.Icon("http://api.map.baidu.com/img/markers.png", new BMap.Size(23, 25), {
+            //     offset: new BMap.Size(10, 25), // 指定定位位置  
+            //     imageOffset: new BMap.Size(0, 0 - 10 * 25) // 设置图片偏移  
+            // });
+            // var marker = new BMap.Marker(point, {
+            //     icon: myIcon
+            // }); //实例化marker
+            var marker=new BMap.Marker(point);
+            map.addOverlay(marker); //添加到地图上
+
+            return;
+        }
+        alert("你的浏览器不支持获取地理位置！");
+    };
+
+    function showPosition(position) {
+        x = position.coords.latitude;
+        y = position.coords.longitude;
+    }
+</script>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+         body {
+                margin:0px;
+                padding:0px;
+                border:0px dashed black;
+            }
+            #controlDiv {
+                position:fixed;
+                right:0px;
+            }
+            #content {
+                position:fixed;
+            }
+            #fillObj {
+                width:100px;
+                height:1000px;
+                border-width:1px;
+                border-style:dashed;
+            }
+    </style>
+    <script src="../jquery-1.9.1.js"></script>
+</head>
+<body onload="init()" onscroll="calc()" onresize="calc()">
+    <div id="controlDiv">
+        margin value: <input id="marginInput" type="range" min="0" max="10" value="0" onchange="valueChange()"/>
+        <span id="marginValue"></span><br/>
+        border width: <input id="borderInput" type="range" min="0" max="10" value="0" onchange="valueChange()"/>
+        <span id="borderValue"></span><br/>
+        padding value: <input id="paddingInput" type="range" min="0" max="10" value="0" onchange="valueChange()"/>
+        <span id="paddingValue"></span>
+    </div>
+    <div id="content"></div>
+    <div id="fillObj"/>
+    <script type="text/javascript">         
+        function valueChange() {
+            switch(event.srcElement.id) {
+                case "marginInput":
+                    document.body.style.margin = event.srcElement.value;
+                    document.getElementById("marginValue").innerHTML = event.srcElement.value;
+                break;
+                case "borderInput":
+                    document.body.style.borderWidth = event.srcElement.value;
+                    document.getElementById("borderValue").innerHTML = event.srcElement.value;
+                break;
+                case "paddingInput":
+                    document.body.style.padding = event.srcElement.value;
+                    document.getElementById("paddingValue").innerHTML = event.srcElement.value;
+                break;
+                default:
+                    alert("error : no match");
+            }
+            calc();
+        }
+        function calc() {
+            var str="";
+            str+="屏幕分辨率的宽：window.screen.width = "+window.screen.width+"<br/>";
+            str+="屏幕分辨率的高：window.screen.height = "+window.screen.height+"<br/>";
+            str+="屏幕可用工作区宽：window.screen.availWidth = "+window.screen.availWidth+"<br/>";
+            str+="屏幕可用工作区高：window.screen.availHeight = "+window.screen.availHeight+"<br/>";
+            str+="网页可见区域相对屏幕的X坐标：window.screenLeft = "+window.screenLeft+"<br/>";
+            str+="网页可见区域相对屏幕的Y坐标：window.screenTop = "+window.screenTop+"<br/>";
+            str+="网页可见区域宽(包括滚动条)：window.innerWidth = "+window.innerWidth+"<br/>";
+            str+="网页可见区域高(包括滚动条)：window.innerHeight = "+window.innerHeight+"<br/>";
+            str+="网页可见区域宽(不包括滚动条)：document.body.clientWidth = "+document.body.clientWidth+"<br/>"
+            str+="网页可见区域高(不包括滚动条)：document.body.clientHeight = "+document.body.clientHeight+"<br/>"
+            str+="网页正文全文宽(不包括滚动条和margin)：document.body.offsetWidth = "+document.body.offsetWidth+"<br/>"
+            str+="网页正文全文高(不包括滚动条和margin)：document.body.offsetHeight = "+document.body.offsetHeight+"<br/>"              
+            str+="网页正文全文宽(不包括滚动条)：document.body.scrollWidth = "+document.body.scrollWidth+"<br/>";
+            str+="网页正文全文高(不包括滚动条)：document.body.scrollHeight = "+document.body.scrollHeight+"<br/>";
+            str+="网页被卷去的上：document.body.scrollLeft = "+document.body.scrollLeft+"<br/>";
+            str+="网页被卷去的左：document.body.scrollTop = "+document.body.scrollTop+"<br/>";
+            str+="<br/>网页正文全文 = border + padding + 内容部分";
+            document.getElementById("content").innerHTML = str;
+        }
+        function init() {
+            document.getElementById("marginValue").innerHTML = document.getElementById("marginInput").value;
+            document.getElementById("borderValue").innerHTML = document.getElementById("borderInput").value;
+            document.getElementById("paddingValue").innerHTML = document.getElementById("paddingInput").value;
+            calc();
+        }
+    </script>
+</body>
+</html>
